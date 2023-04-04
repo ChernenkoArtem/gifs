@@ -11,8 +11,9 @@ import GiphyService, { IGif } from '@/app/services/giphy.service'
 import GifsGrid from "@/app/components/GifsGrid.vue";
 import EventEmitter from "@/core/event-emitter";
 import { randomizer } from "@/core/utils";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: {GifsGrid},
   data() {
     return {
@@ -29,10 +30,10 @@ export default {
     async searchGifs(value: string) {
       try {
         const { data } = await GiphyService.getSearchGifs(value);
-        if ( data.length >= 1 ) {
+        if ( Array.isArray(data) && data.length >= 1 ) {
           this.gifsList = data;
         } else {
-          const { data } = await GiphyService.getRandomGift('404',1);
+          const { data } = await GiphyService.getRandomGift('404');
           this.gifsList = [data];
         }
       } catch (e) {
@@ -43,7 +44,7 @@ export default {
   unmounted() {
     EventEmitter.unsubscribe('searchValue', this.searchGifs);
   }
-}
+})
 </script>
 
 <style>

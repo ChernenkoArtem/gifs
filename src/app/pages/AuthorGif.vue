@@ -9,7 +9,6 @@
         <v-img
             :src="author.banner_image ||author.avatar_url"
             class="author-image text-right pa-2"
-            @click="toggle"
         ></v-img>
         <div class="author-name">{{ author.display_name }}</div>
         <a :href="author.profile_url" target="_blank">Gifhy profile</a>
@@ -23,12 +22,13 @@
 
 <script lang="ts">
 import GiphyService from "@/app/services/giphy.service.js";
+import { defineComponent } from "vue";
 
-export default {
+export default  defineComponent({
   name: "AuthorGif",
   data(){
     return {
-      author: Object,
+      author: {} as any,
     }
   },
   mounted() {
@@ -40,7 +40,7 @@ export default {
       return `/gif/${gifItemId}`;
     }
   }
-}
+})
 </script>
 
 <style scoped>

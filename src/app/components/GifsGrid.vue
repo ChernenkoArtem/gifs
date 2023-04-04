@@ -29,20 +29,23 @@
 
 <script lang="ts">
 import { router } from "@/app/routes/routes";
-import GiphyService from "@/app/services/giphy.service";
+import GiphyService, { IGif } from "@/app/services/giphy.service";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   props: {
-    gifsList: Array,
+    gifsList: {
+      type: Array<IGif>
+    },
   },
   methods: {
-    goToSelectGif(item: any) {
+    goToSelectGif(item: IGif): void {
       GiphyService.selectGif = item;
       router.push({ path: `gif/${item.id}` })
     }
   }
 
-}
+})
 </script>
 
 <style>

@@ -49,8 +49,9 @@
 <script lang="ts">
 import GiphyService, { IGif } from "@/app/services/giphy.service.js";
 import { randomizer } from "@/core/utils";
+import { defineComponent } from "vue";
 
-export default {
+export default  defineComponent({
   name: "Gif",
   data() {
     return {
@@ -99,7 +100,7 @@ export default {
       await navigator.share(shareData);
     }
   }
-}
+})
 </script>
 
 <style>

@@ -15,10 +15,11 @@
   import EventEmitter from "@/core/event-emitter";
   import { debounce } from "@/core/utils";
   import { router } from "@/app/routes/routes";
+  import { defineComponent } from "vue";
 
   const emitValue: Function = debounce(EventEmitter.emit.bind(EventEmitter), 1000);
 
-  export default {
+  export default defineComponent({
     data(){
       return {
         searchValue: '',
@@ -37,7 +38,7 @@
       }
     }
 
-  }
+  })
 </script>
 
 <style>
