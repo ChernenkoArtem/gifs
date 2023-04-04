@@ -1,7 +1,5 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 import Home from "@/app/pages/Home.vue";
-const AuthorGif = import("@/app/pages/AuthorGif.vue");
-const Gif = import("@/app/pages/Gif.vue");
 
 const routes = [
     {
@@ -10,11 +8,11 @@ const routes = [
     },
     {
         path: '/gif/:gifId',
-        component: Gif
+        component: () => import("@/app/pages/Gif.vue")
     },
     {
         path: '/author/:authorId',
-        component: AuthorGif
+        component: () => import("@/app/pages/AuthorGif.vue")
     },
 ]
 
